@@ -12,12 +12,14 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function CartDrawer() {
+export default function CartDrawer({ open: externalOpen, onOpenChange: externalOnOpenChange } = {}) {
     const { items, removeItem, updateQuantity } = useCartStore();
     const totalItems = useCartItemCount();
     const totalPrice = useCartTotal();
     const navigate = useNavigate();
-    const [open, setOpen] = React.useState(false);
+    const [internalOpen, setInternalOpen] = React.useState(false);
+    const open = externalOpen !== undefined ? externalOpen : internalOpen;
+    const setOpen = externalOnOpenChange || setInternalOpen;
 
     return (
         <Sheet open={open} onOpenChange={setOpen}>

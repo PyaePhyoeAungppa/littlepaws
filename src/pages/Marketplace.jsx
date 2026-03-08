@@ -66,7 +66,7 @@ export default function Marketplace() {
     };
 
     return (
-        <div className="min-h-screen bg-background pb-24 md:pb-12">
+        <div className="min-h-screen bg-background pb-36 md:pb-16">
             {/* Quick View Modal */}
             <Dialog open={!!quickViewProduct} onOpenChange={() => setQuickViewProduct(null)}>
                 <DialogContent className="sm:max-w-[700px] p-0 overflow-hidden rounded-3xl border-none">

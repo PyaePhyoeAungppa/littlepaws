@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import BottomNav from './components/layout/BottomNav';
 import Footer from './components/layout/Footer';
+import FloatingCart from './components/cart/FloatingCart';
 import Home from './pages/Home';
 import Marketplace from './pages/Marketplace';
 import Checkout from './pages/Checkout';
@@ -33,6 +34,7 @@ function App() {
                 </main>
                 <Footer />
                 <BottomNav />
+                <FloatingCart />
             </div>
         </BrowserRouter>
     );

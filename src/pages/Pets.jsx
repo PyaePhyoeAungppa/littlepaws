@@ -29,7 +29,7 @@ export default function Pets() {
     });
 
     return (
-        <div className="min-h-screen bg-background pb-24 md:pb-12">
+        <div className="min-h-screen bg-background pb-36 md:pb-16">
             <header className="bg-white border-b py-12 mb-8">
                 <div className="max-w-6xl mx-auto px-6">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">

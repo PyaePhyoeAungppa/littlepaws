@@ -55,17 +55,17 @@ export default function Home() {
     const featuredPets = pets.slice(0, 4);
 
     return (
-        <div className="pb-20 md:pb-0 space-y-16 animate-in fade-in duration-700">
+        <div className="pb-36 md:pb-8 space-y-12 md:space-y-16 animate-in fade-in duration-700">
             {/* Hero */}
             <section className="relative px-4 pt-8 md:pt-12">
                 <div className="max-w-6xl mx-auto relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10 border shadow-2xl shadow-primary/5">
                     <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5" />
-                    <div className="relative z-10 py-20 px-6 md:px-12 text-center flex flex-col items-center">
+                    <div className="relative z-10 py-12 md:py-20 px-4 md:px-12 text-center flex flex-col items-center">
                         <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
                             <Badge variant="outline" className="mb-6 px-4 py-1 border-primary/20 text-primary bg-primary/5 rounded-full">
                                 🐾 Explore LittlePaws
                             </Badge>
-                            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-foreground mb-6 leading-tight">
+                            <h1 className="text-4xl md:text-7xl font-black tracking-tight text-foreground mb-5 leading-tight">
                                 Everything your <span className="text-primary italic">pet</span> needs.
                             </h1>
                             <p className="text-muted-foreground text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
@@ -87,7 +87,7 @@ export default function Home() {
             </section>
 
             {/* Quick Categories */}
-            <section className="max-w-6xl mx-auto px-6">
+            <section className="max-w-6xl mx-auto px-4 md:px-6">
                 <div className="mb-8">
                     <h2 className="text-3xl font-black mb-1">Quick Access</h2>
                     <p className="text-muted-foreground">Jump straight to what your pet needs today.</p>
