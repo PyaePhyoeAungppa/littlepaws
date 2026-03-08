@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchFromMock } from '../../api/client';
+import { fetchFromMock, writeMock } from '../../api/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -53,10 +53,9 @@ export default function MerchantDashboard() {
     const handleProductSubmit = async (e, type) => {
         e.preventDefault();
         const payload = { ...productForm, price: parseFloat(productForm.price), shopId: '1' };
-        const url = type === 'ADD' ? 'http://localhost:3001/products' : `http://localhost:3001/products/${editingProduct.id}`;
-        if (type !== 'ADD') payload.id = editingProduct.id;
-        else payload.id = Date.now().toString();
-        await fetch(url, { method: type === 'ADD' ? 'POST' : 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        const method = type === 'ADD' ? 'POST' : 'PUT';
+        const id = type === 'ADD' ? null : editingProduct.id;
+        await writeMock('products', method, payload, id);
         loadAll();
         setProductForm(EMPTY_PRODUCT);
         type === 'ADD' ? setIsAddOpen(false) : setIsEditOpen(false);
@@ -64,7 +63,7 @@ export default function MerchantDashboard() {
 
     const handleDeleteProduct = async (id) => {
         if (!window.confirm('Delete this product?')) return;
-        await fetch(`http://localhost:3001/products/${id}`, { method: 'DELETE' });
+        await writeMock('products', 'DELETE', null, id);
         loadAll();
     };
 
@@ -73,18 +72,14 @@ export default function MerchantDashboard() {
     // Promo CRUD
     const handlePromoSubmit = async (e) => {
         e.preventDefault();
-        await fetch('http://localhost:3001/promotions', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ...promoForm, id: Date.now().toString(), discount: parseFloat(promoForm.discount) })
-        });
+        await writeMock('promotions', 'POST', { ...promoForm, id: Date.now().toString(), discount: parseFloat(promoForm.discount) });
         loadAll();
         setIsPromoOpen(false);
         setPromoForm(EMPTY_PROMO);
     };
 
     const handleDeletePromo = async (id) => {
-        await fetch(`http://localhost:3001/promotions/${id}`, { method: 'DELETE' });
+        await writeMock('promotions', 'DELETE', null, id);
         loadAll();
     };
 

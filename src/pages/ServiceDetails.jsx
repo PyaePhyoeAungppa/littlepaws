@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Calendar as CalendarIcon, Clock, MapPin } from 'lucide-react';
 import { format } from "date-fns";
-import { fetchFromMock } from '../api/client';
+import { fetchFromMock, writeMock } from '../api/client';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
@@ -41,11 +41,7 @@ export default function ServiceDetails() {
         };
 
         try {
-            await fetch('http://localhost:3001/appointments', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(appointment)
-            });
+            await writeMock('appointments', 'POST', appointment);
             alert("Appointment booked successfully!");
             navigate('/');
         } catch (error) {

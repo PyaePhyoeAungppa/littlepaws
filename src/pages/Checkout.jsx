@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useCartStore } from '../lib/store';
+import { writeMock } from '../api/client';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -39,11 +40,7 @@ export default function Checkout() {
             items: items.map(i => ({ id: i.id, name: i.name, quantity: i.quantity, price: i.price }))
         };
         try {
-            await fetch('http://localhost:3001/orders', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newOrder)
-            });
+            await writeMock('orders', 'POST', newOrder);
             clearCart();
             setStep(3);
         } catch (err) {
