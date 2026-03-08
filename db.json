@@ -1,0 +1,387 @@
+{
+  "pets": [
+    {
+      "id": "p1",
+      "name": "Mochi",
+      "species": "Dog",
+      "breed": "Shiba Inu",
+      "age": "2 years",
+      "gender": "Male",
+      "price": 850,
+      "type": "Buy",
+      "status": "Available",
+      "image": "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&q=80&w=600",
+      "description": "Mochi is a playful, energetic Shiba Inu who loves outdoor adventures and cuddles. Vaccinated, neutered, and microchipped.",
+      "shopId": "1"
+    },
+    {
+      "id": "p2",
+      "name": "Luna",
+      "species": "Cat",
+      "breed": "Scottish Fold",
+      "age": "1 year",
+      "gender": "Female",
+      "price": 650,
+      "type": "Buy",
+      "status": "Available",
+      "image": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=600",
+      "description": "Luna is a gentle, affectionate Scottish Fold who enjoys lounging and playing with feather toys. Fully vaccinated.",
+      "shopId": "2"
+    },
+    {
+      "id": "p3",
+      "name": "Biscuit",
+      "species": "Dog",
+      "breed": "Golden Retriever",
+      "age": "3 months",
+      "gender": "Male",
+      "price": 0,
+      "type": "Adopt",
+      "status": "Available",
+      "image": "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&q=80&w=600",
+      "description": "Biscuit is a sweet rescue puppy looking for his forever home. Very sociable and great with kids.",
+      "shopId": "1"
+    },
+    {
+      "id": "p4",
+      "name": "Nala",
+      "species": "Cat",
+      "breed": "Bengal",
+      "age": "4 years",
+      "gender": "Female",
+      "price": 0,
+      "type": "Adopt",
+      "status": "Available",
+      "image": "https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&q=80&w=600",
+      "description": "Nala is an active, curious Bengal cat who needs an experienced owner. Spayed and vaccinated.",
+      "shopId": "2"
+    },
+    {
+      "id": "p5",
+      "name": "Cooper",
+      "species": "Dog",
+      "breed": "Beagle",
+      "age": "1.5 years",
+      "gender": "Male",
+      "price": 420,
+      "type": "Buy",
+      "status": "Available",
+      "image": "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&q=80&w=600",
+      "description": "Cooper is a lovable Beagle with a great nose and a bigger heart. House-trained and vaccinated.",
+      "shopId": "1"
+    },
+    {
+      "id": "p6",
+      "name": "Snowball",
+      "species": "Rabbit",
+      "breed": "Holland Lop",
+      "age": "6 months",
+      "gender": "Female",
+      "price": 180,
+      "type": "Buy",
+      "status": "Available",
+      "image": "https://images.unsplash.com/photo-1559239115-ce3eb7cb87ea?auto=format&fit=crop&q=80&w=600",
+      "description": "Snowball is a fluffy Holland Lop rabbit who is incredibly sociable and loves to be handled.",
+      "shopId": "2"
+    },
+    {
+      "id": "p7",
+      "name": "Mango",
+      "species": "Bird",
+      "breed": "Sun Conure",
+      "age": "8 months",
+      "gender": "Male",
+      "price": 350,
+      "type": "Buy",
+      "status": "Available",
+      "image": "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?auto=format&fit=crop&q=80&w=600",
+      "description": "Mango is a vibrant, playful Sun Conure who loves interaction and can learn simple tricks.",
+      "shopId": "1"
+    },
+    {
+      "id": "p8",
+      "name": "Shadow",
+      "species": "Cat",
+      "breed": "Maine Coon",
+      "age": "2 years",
+      "gender": "Male",
+      "price": 0,
+      "type": "Adopt",
+      "status": "Available",
+      "image": "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?auto=format&fit=crop&q=80&w=600",
+      "description": "Shadow is a majestic Maine Coon rescue looking for a loving, patient family. Neutered and healthy.",
+      "shopId": "2"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Premium High-Protein Dog Food",
+      "price": 45.99,
+      "category": "Foods",
+      "image": "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&q=80&w=400",
+      "description": "Grain-free, high-protein kibble for active adult dogs. Packed with essential vitamins and minerals for a healthy coat.",
+      "shopId": "1"
+    },
+    {
+      "id": "2",
+      "name": "Luxury Cat Tree & Condo",
+      "price": 120,
+      "category": "Supplies",
+      "image": "https://images.unsplash.com/photo-1545529468-42764ef8c85f?auto=format&fit=crop&q=80&w=400",
+      "description": "Multi-level premium cat tree with scratching posts, hiding condos, and cozy top perches for your feline.",
+      "shopId": "2"
+    },
+    {
+      "id": "3",
+      "name": "Advanced Flea & Tick Treatment",
+      "price": 25.5,
+      "category": "Medicines",
+      "image": "https://images.unsplash.com/photo-1585155770447-2f66e2a397b5?auto=format&fit=crop&q=80&w=400",
+      "description": "Fast-acting, long-lasting monthly topical treatment for dogs and cats against fleas, ticks, and mosquitoes.",
+      "shopId": "1"
+    },
+    {
+      "id": "4",
+      "name": "Squeaky Chew Bone",
+      "price": 9.99,
+      "category": "Toys",
+      "image": "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&q=80&w=400",
+      "description": "Durable, non-toxic rubber chew toy with an internal squeaker to keep your dog entertained for hours.",
+      "shopId": "1"
+    },
+    {
+      "id": "5",
+      "name": "Organic Catnip Blend",
+      "price": 12.49,
+      "category": "Foods",
+      "image": "https://images.unsplash.com/photo-1548366086-7f1b76106622?auto=format&fit=crop&q=80&w=400",
+      "description": "100% natural and organic catnip harvested at peak essential oil production for maximum feline excitement.",
+      "shopId": "2"
+    },
+    {
+      "id": "6",
+      "name": "Orthopedic Pet Bed",
+      "price": 55,
+      "category": "Supplies",
+      "image": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=400",
+      "description": "Memory foam orthopedic bed designed to relieve joint pain and improve sleep quality for senior pets.",
+      "shopId": "2"
+    },
+    {
+      "id": "7",
+      "name": "Stainless Steel Pet Bowl Set",
+      "price": 19.99,
+      "category": "Supplies",
+      "image": "https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?auto=format&fit=crop&q=80&w=400",
+      "description": "Set of 2 heavy-duty stainless steel bowls with non-slip rubber base. Dishwasher safe and rust-resistant.",
+      "shopId": "1"
+    },
+    {
+      "id": "8",
+      "name": "Interactive Puzzle Feeder",
+      "price": 34.95,
+      "category": "Toys",
+      "image": "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&q=80&w=400",
+      "description": "Slow-feed puzzle toy that stimulates your dog's mind and slows down eating, reducing bloat risk.",
+      "shopId": "2"
+    },
+    {
+      "id": "9",
+      "name": "Cat Litter Premium Clumping",
+      "price": 22,
+      "category": "Supplies",
+      "image": "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&q=80&w=400",
+      "description": "Ultra-clumping, low-dust formula with activated charcoal for superior odor control. 99% dust-free.",
+      "shopId": "1"
+    },
+    {
+      "id": "10",
+      "name": "Adjustable Dog Harness",
+      "price": 38,
+      "category": "Supplies",
+      "image": "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&q=80&w=400",
+      "description": "No-pull, fully adjustable mesh harness with reflective strips for safe night walks. Padded for comfort.",
+      "shopId": "2"
+    },
+    {
+      "id": "11",
+      "name": "Vitamin & Joint Supplement",
+      "price": 29.99,
+      "category": "Medicines",
+      "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=400",
+      "description": "Daily chewable supplements with glucosamine, chondroitin, and omega-3 for healthy joints and a shiny coat.",
+      "shopId": "1"
+    },
+    {
+      "id": "12",
+      "name": "Feather Wand Cat Toy",
+      "price": 8.5,
+      "category": "Toys",
+      "image": "https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?auto=format&fit=crop&q=80&w=400",
+      "description": "Extendable wand with natural feathers that trigger your cat's hunting instincts for active, healthy play.",
+      "shopId": "2"
+    },
+    {
+      "id": "13",
+      "name": "Grain-Free Wet Cat Food (12 Pack)",
+      "price": 36,
+      "category": "Foods",
+      "image": "https://images.unsplash.com/photo-1548366086-7f1b76106622?auto=format&fit=crop&q=80&w=400",
+      "description": "Complete nutrition in a variety pack of 12 grain-free wet food pouches. No artificial preservatives.",
+      "shopId": "1"
+    },
+    {
+      "id": "14",
+      "name": "Pet Grooming Brush",
+      "price": 16.99,
+      "category": "Supplies",
+      "image": "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=400",
+      "description": "Self-cleaning slicker brush that removes loose fur, tangles, and dander with a single button press.",
+      "shopId": "2"
+    },
+    {
+      "id": "15",
+      "name": "Puppy Training Treats",
+      "price": 14,
+      "category": "Foods",
+      "image": "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&q=80&w=400",
+      "description": "Soft, bite-sized training treats made from real chicken. Low calorie, irresistible flavor for fast learning.",
+      "shopId": "1"
+    },
+    {
+      "id": "16",
+      "name": "Anti-Anxiety Pet Wrap",
+      "price": 42,
+      "category": "Supplies",
+      "image": "https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?auto=format&fit=crop&q=80&w=400",
+      "description": "Calming compression wrap that reduces anxiety during thunderstorms, fireworks, and travel.",
+      "shopId": "2"
+    }
+  ],
+  "services": [
+    {
+      "id": "1",
+      "name": "Paws & Relax Cafe",
+      "type": "Cafe",
+      "rating": 4.8,
+      "address": "123 Pet Lane, Paws City",
+      "image": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=400",
+      "description": "A cozy cafe where you can enjoy artisanal coffee while your pets socialize in a safe environment."
+    },
+    {
+      "id": "2",
+      "name": "Happy Tails Vet Clinic",
+      "type": "Vet",
+      "rating": 4.9,
+      "address": "456 Bark St, Paws City",
+      "image": "https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&fit=crop&q=80&w=400",
+      "description": "Comprehensive veterinary care including check-ups, vaccinations, and emergency services."
+    },
+    {
+      "id": "3",
+      "name": "Fluffy Clouds Hotel",
+      "type": "Hotel",
+      "rating": 4.7,
+      "address": "789 Meow Blvd, Paws City",
+      "image": "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?auto=format&fit=crop&q=80&w=400",
+      "description": "Luxury boarding for cats and dogs with 24/7 supervision and large play areas."
+    },
+    {
+      "id": "4",
+      "name": "City Center Animal Hospital",
+      "type": "Vet",
+      "rating": 4.6,
+      "address": "101 Downtown Ave, Paws City",
+      "image": "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=400",
+      "description": "State-of-the-art facility offering advanced diagnostics and surgery."
+    },
+    {
+      "id": "5",
+      "name": "The Barkery Cafe",
+      "type": "Cafe",
+      "rating": 4.5,
+      "address": "22 Biscuit Blvd, Paws City",
+      "image": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=400",
+      "description": "Dog-friendly bakery cafe serving pet treats alongside specialty coffee and brunch options."
+    },
+    {
+      "id": "6",
+      "name": "Paradise Pet Resort",
+      "type": "Hotel",
+      "rating": 4.9,
+      "address": "5 Serenity Drive, Paws City",
+      "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=400",
+      "description": "Upscale pet resort with private suites, daily spa treatments, and gourmet meals."
+    }
+  ],
+  "shops": [
+    {
+      "id": "1",
+      "name": "LittlePaws Official Store",
+      "owner": "Admin",
+      "email": "admin@littlepaws.com"
+    },
+    {
+      "id": "2",
+      "name": "Premium Pet Supplies",
+      "owner": "Sarah Jenkins",
+      "email": "sarah@premiumpets.com"
+    }
+  ],
+  "cart": [],
+  "orders": [
+    {
+      "id": "1772994019536",
+      "date": "2026-03-08T18:20:19.536Z",
+      "total": 0,
+      "items": [
+        {
+          "id": "3",
+          "name": "Advanced Flea & Tick Treatment",
+          "quantity": 1,
+          "price": 25.5
+        }
+      ]
+    }
+  ],
+  "appointments": [],
+  "promotions": [
+    {
+      "id": "promo1",
+      "title": "🔥 Flash Summer Sale",
+      "discount": 25,
+      "code": "SUMMER25",
+      "badge": "Hot Deal",
+      "expires": "2026-04-30",
+      "description": "25% off all pet food and treats this season!"
+    },
+    {
+      "id": "promo2",
+      "title": "🐾 New Pet Bundle",
+      "discount": 15,
+      "code": "NEWPET15",
+      "badge": "Bundle",
+      "expires": "2026-05-15",
+      "description": "Get 15% off when you buy any 3 supplies together."
+    },
+    {
+      "id": "promo3",
+      "title": "❤️ Adoption Day Special",
+      "discount": 0,
+      "code": "ADOPT2026",
+      "badge": "Free Adoption",
+      "expires": "2026-04-15",
+      "description": "Waived adoption fees for selected pets this April!"
+    },
+    {
+      "id": "promo4",
+      "title": "💊 Vet Visit Discount",
+      "discount": 20,
+      "code": "VETSAVE20",
+      "badge": "Health",
+      "expires": "2026-05-31",
+      "description": "20% off first-time vet consultation bookings."
+    }
+  ]
+}

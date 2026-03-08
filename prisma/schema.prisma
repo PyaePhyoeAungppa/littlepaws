@@ -1,0 +1,36 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  price       Float
+  category    String
+  image       String
+  description String
+  shopId      String
+  shop        Shop     @relation(fields: [shopId], references: [id])
+}
+
+model Service {
+  id      String @id @default(cuid())
+  name    String
+  type    String
+  rating  Float
+  address String
+  image   String
+}
+
+model Shop {
+  id       String    @id @default(cuid())
+  name     String
+  owner    String
+  email    String    @unique
+  products Product[]
+}
