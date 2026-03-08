@@ -92,13 +92,13 @@ export default function MerchantDashboard() {
     ];
 
     return (
-        <div className="container max-w-7xl mx-auto py-10 px-6 animate-in fade-in duration-500">
-            <div className="flex items-center justify-between mb-8">
+        <div className="container max-w-7xl mx-auto py-6 md:py-10 px-4 md:px-6 animate-in fade-in duration-500 pb-36 md:pb-16">
+            <div className="flex items-center justify-between mb-6 md:mb-8">
                 <div>
-                    <h1 className="text-4xl font-black tracking-tight">Merchant Dashboard</h1>
-                    <p className="text-muted-foreground">Welcome back, Admin 👋</p>
+                    <h1 className="text-2xl md:text-4xl font-black tracking-tight">Merchant Dashboard</h1>
+                    <p className="text-muted-foreground text-sm">Welcome back, Admin 👋</p>
                 </div>
-                <span className="text-xs text-muted-foreground bg-muted px-3 py-1.5 rounded-full border font-medium">
+                <span className="hidden sm:inline text-xs text-muted-foreground bg-muted px-3 py-1.5 rounded-full border font-medium">
                     {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
                 </span>
             </div>
@@ -144,162 +144,209 @@ export default function MerchantDashboard() {
 
             {/* Tabs */}
             <Tabs defaultValue="products">
-                <TabsList className="bg-muted/50 p-1 rounded-2xl h-14 mb-8 border gap-1 flex w-fit">
-                    {[['products', 'Products', <Package size={15} />], ['orders', 'Orders', <ShoppingBag size={15} />], ['appointments', 'Appointments', <Calendar size={15} />], ['promotions', 'Promotions', <Tag size={15} />]].map(([val, label, icon]) => (
-                        <TabsTrigger key={val} value={val}
-                            className="px-6 h-full rounded-xl font-bold flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-lg transition-all">
-                            {icon} {label}
-                        </TabsTrigger>
-                    ))}
-                </TabsList>
+                {/* Scrollable tab bar for mobile */}
+                <div className="overflow-x-auto pb-1 mb-6 md:mb-8">
+                    <TabsList className="bg-muted/50 p-1 rounded-2xl h-12 border gap-1 flex w-max min-w-full md:w-fit">
+                        {[['products', 'Products', <Package size={14} />], ['orders', 'Orders', <ShoppingBag size={14} />], ['appointments', 'Appts', <Calendar size={14} />], ['promotions', 'Promos', <Tag size={14} />]].map(([val, label, icon]) => (
+                            <TabsTrigger key={val} value={val}
+                                className="px-4 md:px-6 h-full rounded-xl font-bold flex items-center gap-1.5 text-sm data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-lg transition-all whitespace-nowrap">
+                                {icon} {label}
+                            </TabsTrigger>
+                        ))}
+                    </TabsList>
+                </div>
 
                 {/* Products Tab */}
                 <TabsContent value="products">
                     <Card className="rounded-[2rem] border-none shadow-xl shadow-black/5 overflow-hidden">
-                        <div className="p-8 flex justify-between items-center border-b bg-white">
-                            <h2 className="text-2xl font-bold">Manage Products <span className="text-muted-foreground text-base font-normal">({products.length})</span></h2>
-                            <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
-                                <DialogTrigger asChild>
-                                    <Button className="rounded-full px-6 font-bold shadow-lg shadow-primary/20 gap-2"><Plus size={16} /> Add Product</Button>
-                                </DialogTrigger>
-                                <DialogContent className="rounded-3xl p-8 sm:max-w-md">
-                                    <DialogHeader><DialogTitle className="text-2xl font-black">Add Product</DialogTitle></DialogHeader>
-                                    <form onSubmit={e => handleProductSubmit(e, 'ADD')} className="space-y-4 mt-4">
-                                        <Input placeholder="Product name" value={productForm.name} onChange={e => setProductForm({ ...productForm, name: e.target.value })} required className={inputCls} />
-                                        <div className="grid grid-cols-2 gap-3">
-                                            <Input type="number" step="0.01" placeholder="Price ($)" value={productForm.price} onChange={e => setProductForm({ ...productForm, price: e.target.value })} required className={inputCls} />
-                                            <Input placeholder="Category" value={productForm.category} onChange={e => setProductForm({ ...productForm, category: e.target.value })} required className={inputCls} />
-                                        </div>
-                                        <Input placeholder="Image URL" value={productForm.image} onChange={e => setProductForm({ ...productForm, image: e.target.value })} className={inputCls} />
-                                        <textarea placeholder="Description" value={productForm.description} onChange={e => setProductForm({ ...productForm, description: e.target.value })} className="w-full rounded-xl bg-muted/40 border-0 resize-none p-3 text-sm outline-none focus:ring-2 focus:ring-primary/20 min-h-[80px]" />
-                                        <Button type="submit" className="w-full h-12 rounded-xl font-bold shadow-lg shadow-primary/20">Save Product</Button>
-                                    </form>
-                                </DialogContent>
-                            </Dialog>
-                            <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
-                                <DialogContent className="rounded-3xl p-8 sm:max-w-md">
-                                    <DialogHeader><DialogTitle className="text-2xl font-black">Edit Product</DialogTitle></DialogHeader>
-                                    <form onSubmit={e => handleProductSubmit(e, 'EDIT')} className="space-y-4 mt-4">
-                                        <Input placeholder="Product name" value={productForm.name} onChange={e => setProductForm({ ...productForm, name: e.target.value })} required className={inputCls} />
-                                        <div className="grid grid-cols-2 gap-3">
-                                            <Input type="number" step="0.01" placeholder="Price ($)" value={productForm.price} onChange={e => setProductForm({ ...productForm, price: e.target.value })} required className={inputCls} />
-                                            <Input placeholder="Category" value={productForm.category} onChange={e => setProductForm({ ...productForm, category: e.target.value })} required className={inputCls} />
-                                        </div>
-                                        <Input placeholder="Image URL" value={productForm.image} onChange={e => setProductForm({ ...productForm, image: e.target.value })} className={inputCls} />
-                                        <textarea placeholder="Description" value={productForm.description} onChange={e => setProductForm({ ...productForm, description: e.target.value })} className="w-full rounded-xl bg-muted/40 border-0 resize-none p-3 text-sm outline-none focus:ring-2 focus:ring-primary/20 min-h-[80px]" />
-                                        <Button type="submit" className="w-full h-12 rounded-xl font-bold shadow-lg shadow-primary/20">Update Product</Button>
-                                    </form>
-                                </DialogContent>
-                            </Dialog>
+                        <div className="p-4 md:p-8 flex justify-between items-center border-b bg-white gap-3">
+                            <h2 className="text-lg md:text-2xl font-bold">Products <span className="text-muted-foreground text-sm font-normal">({products.length})</span></h2>
+                            <div className="flex gap-2">
+                                <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
+                                    <DialogTrigger asChild>
+                                        <Button size="sm" className="rounded-full font-bold shadow-lg shadow-primary/20 gap-1.5"><Plus size={14} /> Add</Button>
+                                    </DialogTrigger>
+                                    <DialogContent className="rounded-3xl p-6 sm:max-w-md">
+                                        <DialogHeader><DialogTitle className="text-2xl font-black">Add Product</DialogTitle></DialogHeader>
+                                        <form onSubmit={e => handleProductSubmit(e, 'ADD')} className="space-y-4 mt-4">
+                                            <Input placeholder="Product name" value={productForm.name} onChange={e => setProductForm({ ...productForm, name: e.target.value })} required className={inputCls} />
+                                            <div className="grid grid-cols-2 gap-3">
+                                                <Input type="number" step="0.01" placeholder="Price ($)" value={productForm.price} onChange={e => setProductForm({ ...productForm, price: e.target.value })} required className={inputCls} />
+                                                <Input placeholder="Category" value={productForm.category} onChange={e => setProductForm({ ...productForm, category: e.target.value })} required className={inputCls} />
+                                            </div>
+                                            <Input placeholder="Image URL" value={productForm.image} onChange={e => setProductForm({ ...productForm, image: e.target.value })} className={inputCls} />
+                                            <textarea placeholder="Description" value={productForm.description} onChange={e => setProductForm({ ...productForm, description: e.target.value })} className="w-full rounded-xl bg-muted/40 border-0 resize-none p-3 text-sm outline-none focus:ring-2 focus:ring-primary/20 min-h-[80px]" />
+                                            <Button type="submit" className="w-full h-12 rounded-xl font-bold shadow-lg shadow-primary/20">Save Product</Button>
+                                        </form>
+                                    </DialogContent>
+                                </Dialog>
+                                <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
+                                    <DialogContent className="rounded-3xl p-6 sm:max-w-md">
+                                        <DialogHeader><DialogTitle className="text-2xl font-black">Edit Product</DialogTitle></DialogHeader>
+                                        <form onSubmit={e => handleProductSubmit(e, 'EDIT')} className="space-y-4 mt-4">
+                                            <Input placeholder="Product name" value={productForm.name} onChange={e => setProductForm({ ...productForm, name: e.target.value })} required className={inputCls} />
+                                            <div className="grid grid-cols-2 gap-3">
+                                                <Input type="number" step="0.01" placeholder="Price ($)" value={productForm.price} onChange={e => setProductForm({ ...productForm, price: e.target.value })} required className={inputCls} />
+                                                <Input placeholder="Category" value={productForm.category} onChange={e => setProductForm({ ...productForm, category: e.target.value })} required className={inputCls} />
+                                            </div>
+                                            <Input placeholder="Image URL" value={productForm.image} onChange={e => setProductForm({ ...productForm, image: e.target.value })} className={inputCls} />
+                                            <textarea placeholder="Description" value={productForm.description} onChange={e => setProductForm({ ...productForm, description: e.target.value })} className="w-full rounded-xl bg-muted/40 border-0 resize-none p-3 text-sm outline-none focus:ring-2 focus:ring-primary/20 min-h-[80px]" />
+                                            <Button type="submit" className="w-full h-12 rounded-xl font-bold shadow-lg shadow-primary/20">Update Product</Button>
+                                        </form>
+                                    </DialogContent>
+                                </Dialog>
+                            </div>
                         </div>
-                        <Table>
-                            <TableHeader>
-                                <TableRow className="hover:bg-transparent bg-muted/20">
-                                    <TableHead className="py-4 font-bold">Product</TableHead>
-                                    <TableHead className="font-bold">Category</TableHead>
-                                    <TableHead className="font-bold text-right">Price</TableHead>
-                                    <TableHead className="font-bold text-right pr-8">Actions</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {products.map(p => (
-                                    <TableRow key={p.id} className="group border-b hover:bg-muted/20 transition-colors">
-                                        <TableCell className="py-4 pl-6">
-                                            <div className="flex items-center gap-4">
-                                                <img src={p.image} alt={p.name} className="w-12 h-12 rounded-xl object-cover bg-muted" />
-                                                <div>
-                                                    <p className="font-bold">{p.name}</p>
-                                                    <p className="text-xs text-muted-foreground line-clamp-1 max-w-[200px]">{p.description}</p>
-                                                </div>
-                                            </div>
-                                        </TableCell>
-                                        <TableCell><Badge variant="secondary" className="font-bold rounded-lg">{p.category}</Badge></TableCell>
-                                        <TableCell className="text-right font-black text-lg">${parseFloat(p.price).toFixed(2)}</TableCell>
-                                        <TableCell className="text-right pr-6">
-                                            <div className="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                <Button variant="ghost" size="icon" onClick={() => openEditProduct(p)} className="hover:bg-primary/10 hover:text-primary rounded-full"><Pencil size={16} /></Button>
-                                                <Button variant="ghost" size="icon" onClick={() => handleDeleteProduct(p.id)} className="hover:bg-destructive/10 hover:text-destructive rounded-full"><Trash2 size={16} /></Button>
-                                            </div>
-                                        </TableCell>
+
+                        {/* Mobile card list */}
+                        <div className="md:hidden divide-y">
+                            {products.map(p => (
+                                <div key={p.id} className="flex items-center gap-3 p-4 hover:bg-muted/20">
+                                    <img src={p.image} alt={p.name} className="w-14 h-14 rounded-xl object-cover bg-muted shrink-0" />
+                                    <div className="flex-1 min-w-0">
+                                        <p className="font-bold truncate">{p.name}</p>
+                                        <p className="text-xs text-muted-foreground">{p.category}</p>
+                                        <p className="font-black text-primary">${parseFloat(p.price).toFixed(2)}</p>
+                                    </div>
+                                    <div className="flex gap-1 shrink-0">
+                                        <Button variant="ghost" size="icon" onClick={() => openEditProduct(p)} className="hover:bg-primary/10 hover:text-primary rounded-full w-8 h-8"><Pencil size={14} /></Button>
+                                        <Button variant="ghost" size="icon" onClick={() => handleDeleteProduct(p.id)} className="hover:bg-destructive/10 hover:text-destructive rounded-full w-8 h-8"><Trash2 size={14} /></Button>
+                                    </div>
+                                </div>
+                            ))}
+                            {products.length === 0 && <p className="text-center py-12 text-muted-foreground text-sm">No products yet.</p>}
+                        </div>
+
+                        {/* Desktop table */}
+                        <div className="hidden md:block">
+                            <Table>
+                                <TableHeader>
+                                    <TableRow className="hover:bg-transparent bg-muted/20">
+                                        <TableHead className="py-4 font-bold">Product</TableHead>
+                                        <TableHead className="font-bold">Category</TableHead>
+                                        <TableHead className="font-bold text-right">Price</TableHead>
+                                        <TableHead className="font-bold text-right pr-8">Actions</TableHead>
                                     </TableRow>
-                                ))}
-                                {products.length === 0 && <TableRow><TableCell colSpan={4} className="text-center py-12 text-muted-foreground">No products yet. Add your first product!</TableCell></TableRow>}
-                            </TableBody>
-                        </Table>
+                                </TableHeader>
+                                <TableBody>
+                                    {products.map(p => (
+                                        <TableRow key={p.id} className="group border-b hover:bg-muted/20 transition-colors">
+                                            <TableCell className="py-4 pl-6">
+                                                <div className="flex items-center gap-4">
+                                                    <img src={p.image} alt={p.name} className="w-12 h-12 rounded-xl object-cover bg-muted" />
+                                                    <div>
+                                                        <p className="font-bold">{p.name}</p>
+                                                        <p className="text-xs text-muted-foreground line-clamp-1 max-w-[200px]">{p.description}</p>
+                                                    </div>
+                                                </div>
+                                            </TableCell>
+                                            <TableCell><Badge variant="secondary" className="font-bold rounded-lg">{p.category}</Badge></TableCell>
+                                            <TableCell className="text-right font-black text-lg">${parseFloat(p.price).toFixed(2)}</TableCell>
+                                            <TableCell className="text-right pr-6">
+                                                <div className="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                    <Button variant="ghost" size="icon" onClick={() => openEditProduct(p)} className="hover:bg-primary/10 hover:text-primary rounded-full"><Pencil size={16} /></Button>
+                                                    <Button variant="ghost" size="icon" onClick={() => handleDeleteProduct(p.id)} className="hover:bg-destructive/10 hover:text-destructive rounded-full"><Trash2 size={16} /></Button>
+                                                </div>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                    {products.length === 0 && <TableRow><TableCell colSpan={4} className="text-center py-12 text-muted-foreground">No products yet. Add your first product!</TableCell></TableRow>}
+                                </TableBody>
+                            </Table>
+                        </div>
                     </Card>
                 </TabsContent>
 
                 {/* Orders Tab */}
                 <TabsContent value="orders">
                     <Card className="rounded-[2rem] border-none shadow-xl shadow-black/5 overflow-hidden">
-                        <div className="p-8 border-b bg-white">
-                            <h2 className="text-2xl font-bold">Orders <span className="text-muted-foreground text-base font-normal">({orders.length})</span></h2>
+                        <div className="p-4 md:p-8 border-b bg-white">
+                            <h2 className="text-lg md:text-2xl font-bold">Orders <span className="text-muted-foreground text-sm font-normal">({orders.length})</span></h2>
                         </div>
-                        <Table>
-                            <TableHeader>
-                                <TableRow className="hover:bg-transparent bg-muted/20">
-                                    <TableHead className="py-4 pl-6 font-bold">Order ID</TableHead>
-                                    <TableHead className="font-bold">Date</TableHead>
-                                    <TableHead className="font-bold">Items</TableHead>
-                                    <TableHead className="font-bold text-right pr-8">Total</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {orders.map(o => (
-                                    <TableRow key={o.id} className="border-b hover:bg-muted/20">
-                                        <TableCell className="py-4 pl-6 font-mono text-xs text-muted-foreground">#{o.id?.slice(-8)}</TableCell>
-                                        <TableCell>{o.date ? new Date(o.date).toLocaleDateString() : '—'}</TableCell>
-                                        <TableCell>
-                                            <div className="flex items-center gap-1">
-                                                <span className="font-bold">{o.items?.length || 0}</span>
-                                                <span className="text-muted-foreground text-sm">items</span>
-                                            </div>
-                                        </TableCell>
-                                        <TableCell className="text-right pr-8 font-black text-primary">${(o.total || 0).toFixed(2)}</TableCell>
+                        {/* Mobile cards */}
+                        <div className="md:hidden divide-y">
+                            {orders.map(o => (
+                                <div key={o.id} className="p-4 flex items-center justify-between gap-3">
+                                    <div>
+                                        <p className="font-mono text-xs text-muted-foreground mb-1">#{o.id?.slice(-8)}</p>
+                                        <p className="font-bold text-sm">{o.items?.length || 0} items</p>
+                                        <p className="text-xs text-muted-foreground">{o.date ? new Date(o.date).toLocaleDateString() : '—'}</p>
+                                    </div>
+                                    <span className="font-black text-primary text-lg">${(o.total || 0).toFixed(2)}</span>
+                                </div>
+                            ))}
+                            {orders.length === 0 && <p className="text-center py-12 text-muted-foreground text-sm">No orders yet.</p>}
+                        </div>
+                        {/* Desktop table */}
+                        <div className="hidden md:block">
+                            <Table>
+                                <TableHeader>
+                                    <TableRow className="hover:bg-transparent bg-muted/20">
+                                        <TableHead className="py-4 pl-6 font-bold">Order ID</TableHead>
+                                        <TableHead className="font-bold">Date</TableHead>
+                                        <TableHead className="font-bold">Items</TableHead>
+                                        <TableHead className="font-bold text-right pr-8">Total</TableHead>
                                     </TableRow>
-                                ))}
-                                {orders.length === 0 && <TableRow><TableCell colSpan={4} className="text-center py-12 text-muted-foreground">No orders yet.</TableCell></TableRow>}
-                            </TableBody>
-                        </Table>
+                                </TableHeader>
+                                <TableBody>
+                                    {orders.map(o => (
+                                        <TableRow key={o.id} className="border-b hover:bg-muted/20">
+                                            <TableCell className="py-4 pl-6 font-mono text-xs text-muted-foreground">#{o.id?.slice(-8)}</TableCell>
+                                            <TableCell>{o.date ? new Date(o.date).toLocaleDateString() : '—'}</TableCell>
+                                            <TableCell><div className="flex items-center gap-1"><span className="font-bold">{o.items?.length || 0}</span><span className="text-muted-foreground text-sm">items</span></div></TableCell>
+                                            <TableCell className="text-right pr-8 font-black text-primary">${(o.total || 0).toFixed(2)}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                    {orders.length === 0 && <TableRow><TableCell colSpan={4} className="text-center py-12 text-muted-foreground">No orders yet.</TableCell></TableRow>}
+                                </TableBody>
+                            </Table>
+                        </div>
                     </Card>
                 </TabsContent>
 
                 {/* Appointments Tab */}
                 <TabsContent value="appointments">
                     <Card className="rounded-[2rem] border-none shadow-xl shadow-black/5 overflow-hidden">
-                        <div className="p-8 border-b bg-white">
-                            <h2 className="text-2xl font-bold">Appointments <span className="text-muted-foreground text-base font-normal">({appointments.length})</span></h2>
+                        <div className="p-4 md:p-8 border-b bg-white">
+                            <h2 className="text-lg md:text-2xl font-bold">Appointments <span className="text-muted-foreground text-sm font-normal">({appointments.length})</span></h2>
                         </div>
-                        <Table>
-                            <TableHeader>
-                                <TableRow className="hover:bg-transparent bg-muted/20">
-                                    <TableHead className="py-4 pl-6 font-bold">Service</TableHead>
-                                    <TableHead className="font-bold">Pet Name</TableHead>
-                                    <TableHead className="font-bold">Date & Time</TableHead>
-                                    <TableHead className="font-bold text-right pr-8">Status</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {appointments.map(a => (
-                                    <TableRow key={a.id} className="border-b hover:bg-muted/20">
-                                        <TableCell className="py-4 pl-6 font-bold">{a.serviceName || `Service #${a.serviceId}`}</TableCell>
-                                        <TableCell className="text-muted-foreground">{a.petName || '—'}</TableCell>
-                                        <TableCell>
-                                            <div>
-                                                <p className="font-bold">{a.date ? new Date(a.date).toLocaleDateString() : a.date}</p>
-                                                <p className="text-xs text-muted-foreground">{a.time}</p>
-                                            </div>
-                                        </TableCell>
-                                        <TableCell className="text-right pr-8">
-                                            <Badge className="bg-amber-100 text-amber-700 border-amber-200 font-bold rounded-lg gap-1">
-                                                <Clock size={12} /> Pending
-                                            </Badge>
-                                        </TableCell>
+                        {/* Mobile cards */}
+                        <div className="md:hidden divide-y">
+                            {appointments.map(a => (
+                                <div key={a.id} className="p-4 flex items-center justify-between gap-3">
+                                    <div>
+                                        <p className="font-bold text-sm">{a.serviceName || `Service #${a.serviceId}`}</p>
+                                        <p className="text-xs text-muted-foreground">{a.date ? new Date(a.date).toLocaleDateString() : a.date} · {a.time}</p>
+                                    </div>
+                                    <Badge className="bg-amber-100 text-amber-700 border-amber-200 font-bold rounded-lg gap-1 shrink-0"><Clock size={11} /> Pending</Badge>
+                                </div>
+                            ))}
+                            {appointments.length === 0 && <p className="text-center py-12 text-muted-foreground text-sm">No appointments yet.</p>}
+                        </div>
+                        {/* Desktop table */}
+                        <div className="hidden md:block">
+                            <Table>
+                                <TableHeader>
+                                    <TableRow className="hover:bg-transparent bg-muted/20">
+                                        <TableHead className="py-4 pl-6 font-bold">Service</TableHead>
+                                        <TableHead className="font-bold">Pet Name</TableHead>
+                                        <TableHead className="font-bold">Date & Time</TableHead>
+                                        <TableHead className="font-bold text-right pr-8">Status</TableHead>
                                     </TableRow>
-                                ))}
-                                {appointments.length === 0 && <TableRow><TableCell colSpan={4} className="text-center py-12 text-muted-foreground">No appointments yet.</TableCell></TableRow>}
-                            </TableBody>
-                        </Table>
+                                </TableHeader>
+                                <TableBody>
+                                    {appointments.map(a => (
+                                        <TableRow key={a.id} className="border-b hover:bg-muted/20">
+                                            <TableCell className="py-4 pl-6 font-bold">{a.serviceName || `Service #${a.serviceId}`}</TableCell>
+                                            <TableCell className="text-muted-foreground">{a.petName || '—'}</TableCell>
+                                            <TableCell><div><p className="font-bold">{a.date ? new Date(a.date).toLocaleDateString() : a.date}</p><p className="text-xs text-muted-foreground">{a.time}</p></div></TableCell>
+                                            <TableCell className="text-right pr-8"><Badge className="bg-amber-100 text-amber-700 border-amber-200 font-bold rounded-lg gap-1"><Clock size={12} /> Pending</Badge></TableCell>
+                                        </TableRow>
+                                    ))}
+                                    {appointments.length === 0 && <TableRow><TableCell colSpan={4} className="text-center py-12 text-muted-foreground">No appointments yet.</TableCell></TableRow>}
+                                </TableBody>
+                            </Table>
+                        </div>
                     </Card>
                 </TabsContent>
 
