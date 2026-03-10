@@ -91,9 +91,24 @@ export default function Pets() {
                                                 <h3 className="font-black text-2xl tracking-tight group-hover:text-primary transition-colors">{pet.name}</h3>
                                                 <Badge variant="outline" className="rounded-lg font-bold">{pet.gender}</Badge>
                                             </div>
-                                            <p className="text-muted-foreground font-medium mb-1">{pet.breed} · {pet.age}</p>
-                                            <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed flex-1 mt-2">{pet.description}</p>
-                                            <div className="flex items-center justify-between mt-6">
+                                            <p className="text-muted-foreground font-medium mb-3 flex items-center gap-1.5 flex-wrap">
+                                                <span>{pet.breed}</span>
+                                                <span className="text-muted-foreground/40">•</span>
+                                                <span>{pet.age}</span>
+                                                <span className="text-muted-foreground/40">•</span>
+                                                <span>{pet.weight}</span>
+                                            </p>
+
+                                            <div className="flex flex-wrap gap-1.5 mb-3">
+                                                <Badge variant="secondary" className="text-[10px] bg-muted/50 rounded-md font-semibold text-muted-foreground">{pet.color}</Badge>
+                                                <Badge variant="secondary" className="text-[10px] bg-muted/50 rounded-md font-semibold text-muted-foreground">{pet.energyLevel} Energy</Badge>
+                                                {pet.vaccinated && (
+                                                    <Badge variant="secondary" className="text-[10px] bg-emerald-50 text-emerald-600 rounded-md font-semibold border-emerald-100">Vaccinated</Badge>
+                                                )}
+                                            </div>
+
+                                            <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed flex-1 mt-1">{pet.description}</p>
+                                            <div className="flex items-center justify-between mt-5 pt-5 border-t border-border/50">
                                                 <span className="text-3xl font-black text-primary">
                                                     {pet.price === 0 ? 'Free' : `$${pet.price}`}
                                                 </span>

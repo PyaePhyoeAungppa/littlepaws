@@ -1,9 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Heart, Search, PawPrint, ShoppingBag, Stethoscope, Hotel, X, SlidersHorizontal } from 'lucide-react';
+import { Heart, Search, PawPrint, ShoppingBag, Stethoscope, Hotel, X, SlidersHorizontal, User } from 'lucide-react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import CartDrawer from '../cart/CartDrawer';
+import { useAuthStore } from '../../lib/store';
 
 const CATEGORIES = [
     { label: 'All', icon: null, color: 'bg-muted text-foreground' },
@@ -25,6 +34,7 @@ export default function Navbar() {
     const inputRef = useRef(null);
     const panelRef = useRef(null);
     const navigate = useNavigate();
+    const { user } = useAuthStore();
 
     // Close dropdown on outside click
     useEffect(() => {
@@ -61,7 +71,6 @@ export default function Navbar() {
     const hasFilters = category !== 'All' || price !== 'Any Price' || distance !== 'Any Distance';
 
     const navLinks = [
-        { to: '/', label: 'Home' },
         { to: '/discover', label: 'Discover' },
         { to: '/pets', label: 'Pets' },
         { to: '/marketplace', label: 'Marketplace' },
@@ -123,8 +132,8 @@ export default function Navbar() {
                                         type="button"
                                         onClick={() => setCategory(cat.label)}
                                         className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold border-2 transition-all ${category === cat.label
-                                                ? `${cat.color} border-current shadow-sm scale-105`
-                                                : 'bg-muted/40 text-muted-foreground border-transparent hover:bg-muted'
+                                            ? `${cat.color} border-current shadow-sm scale-105`
+                                            : 'bg-muted/40 text-muted-foreground border-transparent hover:bg-muted'
                                             }`}
                                     >
                                         {cat.icon}{cat.label}
@@ -203,11 +212,50 @@ export default function Navbar() {
                         {link.label}
                     </NavLink>
                 ))}
-                <Link to="/merchant/login">
-                    <Button variant="outline" className="rounded-full px-5 h-10 text-sm">
-                        Shop Admin
-                    </Button>
-                </Link>
+
+                {/* Auth-dependent UI */}
+                {user ? (
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon" className="rounded-full hover:bg-muted ml-2">
+                                <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+                                    <User size={18} />
+                                </div>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-56 rounded-2xl p-2 z-50">
+                            <DropdownMenuLabel className="font-bold">My Account</DropdownMenuLabel>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem onClick={() => navigate('/user/profile')} className="cursor-pointer rounded-xl font-medium">
+                                <span className="flex items-center gap-2"><User size={16} /> Profile</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => navigate('/user/wishlist')} className="cursor-pointer rounded-xl font-medium">
+                                <span className="flex items-center gap-2 text-rose-500"><Heart size={16} /> Wishlist</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem onClick={() => {
+                                useAuthStore.getState().logout();
+                                navigate('/');
+                            }} className="cursor-pointer rounded-xl font-medium text-red-500 hover:text-red-600">
+                                Log out
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                ) : (
+                    <div className="flex items-center gap-2 ml-2">
+                        <Link to="/merchant/login">
+                            <Button variant="outline" className="rounded-full px-5 h-10 text-sm">
+                                Shop Admin
+                            </Button>
+                        </Link>
+                        <Link to="/user/login">
+                            <Button className="rounded-full px-5 h-10 text-sm font-bold shadow-lg shadow-primary/20">
+                                Log In
+                            </Button>
+                        </Link>
+                    </div>
+                )}
+
                 <CartDrawer />
             </div>
         </nav>

@@ -43,7 +43,7 @@ export default function FloatingCart() {
             </AnimatePresence>
 
             {/* Reuse the CartDrawer with external open state */}
-            <CartDrawer open={open} onOpenChange={setOpen} />
+            <CartDrawer open={open} onOpenChange={setOpen} hideTrigger />
         </>
     );
 }

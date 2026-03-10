@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ShoppingBag, CreditCard, Package, Lock, CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 function formatCardNumber(value) {
     return value.replace(/\D/g, '').slice(0, 16).replace(/(.{4})/g, '$1 ').trim();
@@ -52,18 +53,18 @@ export default function Checkout() {
 
     if (items.length === 0 && step !== 3) {
         return (
-            <div className="container py-20 text-center flex flex-col items-center">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="container py-20 text-center flex flex-col items-center">
                 <ShoppingBag size={64} className="text-muted-foreground mb-6" strokeWidth={1.5} />
                 <h2 className="text-3xl font-black mb-4">Your cart is empty</h2>
                 <Button onClick={() => navigate('/marketplace')} className="rounded-full px-8 h-12">Return to Shop</Button>
-            </div>
+            </motion.div>
         );
     }
 
     // Success Screen
     if (step === 3) {
         return (
-            <div className="container py-20 text-center flex flex-col items-center gap-6 max-w-lg mx-auto">
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} className="container py-20 text-center flex flex-col items-center gap-6 max-w-lg mx-auto">
                 <div className="w-24 h-24 bg-emerald-100 rounded-full flex items-center justify-center animate-in zoom-in duration-500">
                     <CheckCircle size={52} className="text-emerald-500" />
                 </div>
@@ -84,14 +85,14 @@ export default function Checkout() {
                 <Button onClick={() => navigate('/')} className="rounded-full px-10 h-14 text-lg font-black shadow-xl shadow-primary/30 w-full">
                     Back to Home
                 </Button>
-            </div>
+            </motion.div>
         );
     }
 
     const inputClass = "h-14 rounded-xl bg-muted/30 border-none shadow-inner text-base";
 
     return (
-        <div className="container max-w-6xl mx-auto py-12 px-6">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="container max-w-6xl mx-auto py-12 px-6">
             {/* Step indicator */}
             <div className="flex items-center gap-3 mb-10">
                 {[{ n: 1, label: 'Shipping', icon: <Package size={16} /> }, { n: 2, label: 'Payment', icon: <CreditCard size={16} /> }].map(({ n, label, icon }) => (
@@ -270,6 +271,6 @@ export default function Checkout() {
                     </Card>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }

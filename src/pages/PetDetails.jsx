@@ -39,7 +39,7 @@ export default function PetDetails() {
                         <img src={pet.image} alt={pet.name} className="w-full h-full object-cover" />
                     </div>
                     <div className="grid grid-cols-3 gap-4 text-center">
-                        {[['🐾', 'Species', pet.species], ['📅', 'Age', pet.age], ['⚧', 'Gender', pet.gender]].map(([icon, label, value]) => (
+                        {[['🐾', 'Species', pet.species], ['📅', 'Age', pet.age], ['⚧', 'Gender', pet.gender], ['⚖️', 'Weight', pet.weight], ['🎨', 'Color', pet.color], ['⚡', 'Energy', pet.energyLevel]].map(([icon, label, value]) => (
                             <div key={label} className="bg-muted/40 rounded-2xl p-4">
                                 <span className="text-2xl block mb-1">{icon}</span>
                                 <p className="text-[11px] text-muted-foreground uppercase tracking-widest font-bold">{label}</p>
@@ -55,7 +55,22 @@ export default function PetDetails() {
                             {pet.type === 'Adopt' ? '🏠 Available for Adoption' : '🐾 Available for Purchase'}
                         </Badge>
                         <h1 className="text-5xl font-black tracking-tight mb-2">{pet.name}</h1>
-                        <p className="text-xl text-muted-foreground font-semibold mb-6">{pet.breed}</p>
+                        <p className="text-xl text-muted-foreground font-semibold mb-4">{pet.breed}</p>
+
+                        <div className="flex flex-wrap gap-2 mb-6">
+                            <Badge variant="secondary" className="px-3 py-1 bg-muted/60 text-muted-foreground font-bold hover:bg-muted/80 transition-colors">
+                                {pet.color}
+                            </Badge>
+                            <Badge variant="secondary" className="px-3 py-1 bg-muted/60 text-muted-foreground font-bold hover:bg-muted/80 transition-colors">
+                                {pet.energyLevel} Energy
+                            </Badge>
+                            {pet.vaccinated && (
+                                <Badge variant="secondary" className="px-3 py-1 bg-emerald-50 text-emerald-600 font-bold border-emerald-100 hover:bg-emerald-100 transition-colors">
+                                    Fully Vaccinated
+                                </Badge>
+                            )}
+                        </div>
+
                         <p className="text-muted-foreground leading-relaxed text-lg">{pet.description}</p>
                     </div>
 

@@ -11,8 +11,12 @@ import ServiceDetails from './pages/ServiceDetails';
 import Discover from './pages/Discover';
 import Pets from './pages/Pets';
 import PetDetails from './pages/PetDetails';
+import ProductDetails from './pages/ProductDetails';
 import MerchantLogin from './pages/merchant/Login';
 import MerchantDashboard from './pages/merchant/Dashboard';
+import UserLogin from './pages/user/Login';
+import UserProfile from './pages/user/Profile';
+import UserWishlist from './pages/user/Wishlist';
 
 function App() {
     return (
@@ -23,11 +27,17 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/marketplace" element={<Marketplace />} />
+                        <Route path="/product/:id" element={<ProductDetails />} />
                         <Route path="/checkout" element={<Checkout />} />
                         <Route path="/service/:id" element={<ServiceDetails />} />
                         <Route path="/discover" element={<Discover />} />
                         <Route path="/pets" element={<Pets />} />
                         <Route path="/pets/:id" element={<PetDetails />} />
+
+                        <Route path="/user/login" element={<UserLogin />} />
+                        <Route path="/user/profile" element={<UserProfile />} />
+                        <Route path="/user/wishlist" element={<UserWishlist />} />
+
                         <Route path="/merchant/login" element={<MerchantLogin />} />
                         <Route path="/merchant/dashboard" element={<MerchantDashboard />} />
                     </Routes>

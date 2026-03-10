@@ -137,8 +137,21 @@ export default function Home() {
                                             <h3 className="font-black text-lg group-hover:text-primary transition-colors">{pet.name}</h3>
                                             <Badge variant="outline" className="text-xs rounded-lg">{pet.gender}</Badge>
                                         </div>
-                                        <p className="text-muted-foreground text-sm mb-3">{pet.breed} · {pet.age}</p>
-                                        <div className="flex items-center justify-between">
+                                        <p className="text-muted-foreground text-sm mb-3 flex items-center gap-1.5 flex-wrap">
+                                            <span>{pet.breed}</span>
+                                            <span className="text-muted-foreground/40">•</span>
+                                            <span>{pet.age}</span>
+                                        </p>
+
+                                        <div className="flex flex-wrap gap-1.5 mb-4">
+                                            <Badge variant="secondary" className="text-[9px] bg-muted/50 rounded-md font-semibold text-muted-foreground">{pet.weight}</Badge>
+                                            <Badge variant="secondary" className="text-[9px] bg-muted/50 rounded-md font-semibold text-muted-foreground">{pet.color}</Badge>
+                                            {pet.vaccinated && (
+                                                <Badge variant="secondary" className="text-[9px] bg-emerald-50 text-emerald-600 rounded-md font-semibold border-emerald-100">Vaccinated</Badge>
+                                            )}
+                                        </div>
+
+                                        <div className="flex items-center justify-between pt-4 border-t border-border/50 mt-auto">
                                             <span className="text-2xl font-black text-primary">{pet.price === 0 ? 'Free' : `$${pet.price}`}</span>
                                             <Button size="sm" className="rounded-xl font-bold text-xs px-3 shadow-md shadow-primary/20">
                                                 {pet.type === 'Adopt' ? 'Adopt' : 'Buy'}
@@ -217,11 +230,11 @@ export default function Home() {
                             ];
                             const grad = gradients[idx % gradients.length];
                             return (
-                                <motion.div key={promo.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.08 }}>
-                                    <div className={`relative bg-gradient-to-br ${grad} rounded-3xl p-6 text-white overflow-hidden shadow-xl shadow-black/10 group cursor-pointer`}>
+                                <motion.div key={promo.id} className="h-full" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.08 }}>
+                                    <div className={`relative h-full flex flex-col bg-gradient-to-br ${grad} rounded-3xl p-6 text-white overflow-hidden shadow-xl shadow-black/10 group cursor-pointer`}>
                                         <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full" />
                                         <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-white/10 rounded-full" />
-                                        <div className="relative z-10">
+                                        <div className="relative z-10 flex flex-col flex-1">
                                             <Badge className="mb-3 bg-white/20 text-white border-white/30 font-bold text-xs backdrop-blur-sm">
                                                 {promo.badge}
                                             </Badge>
@@ -244,7 +257,7 @@ export default function Home() {
                                                 <p className="text-white/80 text-xs mt-2 text-center">✓ Copied!</p>
                                             )}
                                             {promo.expires && (
-                                                <p className="text-white/60 text-[10px] mt-3 text-right">
+                                                <p className="text-white/60 text-[10px] mt-auto pt-3 text-right">
                                                     Expires {new Date(promo.expires).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                                                 </p>
                                             )}
@@ -276,34 +289,43 @@ export default function Home() {
 
                     {['Cafe', 'Vet', 'Hotel'].map(type => (
                         <TabsContent key={type} value={type} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {services.filter(s => s.type === type).map(service => (
-                                    <Card key={service.id} className="overflow-hidden border-none shadow-xl shadow-black/5 rounded-[2rem] group">
-                                        <div className="flex flex-col sm:flex-row h-full">
-                                            <div className="sm:w-44 h-44 relative overflow-hidden shrink-0">
-                                                <img src={service.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt={service.name} />
-                                            </div>
-                                            <div className="p-6 flex flex-col justify-between flex-1">
-                                                <div>
-                                                    <div className="flex justify-between items-start mb-2">
-                                                        <h3 className="font-bold text-xl tracking-tight group-hover:text-primary transition-colors">{service.name}</h3>
-                                                        <div className="flex items-center gap-1 bg-amber-50 font-black px-2.5 py-1 rounded-full text-xs border border-amber-100 text-amber-700 shrink-0 ml-2">
-                                                            <Star size={11} className="fill-current" /> {service.rating}
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {services.filter(s => s.type === type).map((service, idx) => (
+                                    <motion.div key={service.id} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.1, duration: 0.5, ease: "easeOut" }}>
+                                        <Link to={`/service/${service.id}`}>
+                                            <Card className="relative overflow-hidden border-none shadow-2xl shadow-black/10 rounded-[2.5rem] group h-[420px] cursor-pointer">
+                                                <img src={service.image} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={service.name} />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 transition-opacity duration-300 group-hover:opacity-90" />
+
+                                                {/* Top Elements */}
+                                                <div className="absolute top-6 left-6 right-6 flex justify-between items-start z-10">
+                                                    <Badge className="bg-white/20 hover:bg-white/30 text-white backdrop-blur-md border-white/20 font-black px-3.5 py-1.5 text-xs tracking-widest uppercase shadow-xl transition-colors">
+                                                        {service.type}
+                                                    </Badge>
+                                                    <div className="flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full text-sm font-black text-white border border-white/20 shadow-xl transition-all group-hover:bg-amber-500/90 group-hover:border-amber-400">
+                                                        <Star size={14} className="fill-amber-400 text-amber-400 group-hover:fill-white group-hover:text-white transition-colors" />
+                                                        {service.rating}
+                                                    </div>
+                                                </div>
+
+                                                {/* Bottom Content */}
+                                                <div className="absolute bottom-0 left-0 right-0 p-8 z-10 transform transition-transform duration-500 group-hover:-translate-y-2">
+                                                    <h3 className="font-black text-3xl text-white mb-3 leading-tight tracking-tight drop-shadow-lg">{service.name}</h3>
+                                                    <p className="text-white/80 text-sm flex items-start gap-2 mb-6 line-clamp-1 font-medium">
+                                                        <MapPin size={18} className="shrink-0 text-primary mt-0.5" />
+                                                        <span>{service.address}</span>
+                                                    </p>
+
+                                                    <div className="overflow-hidden">
+                                                        <div className="flex items-center gap-2 text-white font-black text-sm uppercase tracking-widest transform transition-all duration-500 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+                                                            {type === 'Vet' ? 'Book Session' : 'Explore Now'}
+                                                            <ArrowRight size={18} className="text-primary group-hover:translate-x-2 transition-transform duration-500" />
                                                         </div>
                                                     </div>
-                                                    <p className="text-muted-foreground text-sm flex items-start gap-1.5 mt-2">
-                                                        <MapPin size={14} className="shrink-0 text-primary mt-0.5" />
-                                                        <span className="line-clamp-2">{service.address}</span>
-                                                    </p>
                                                 </div>
-                                                <Link to={`/service/${service.id}`} className="mt-5">
-                                                    <Button variant="outline" className="rounded-2xl font-black h-11 w-full border-2 hover:bg-primary hover:text-white hover:border-primary transition-all text-sm">
-                                                        {type === 'Vet' ? '📅 Book Appointment' : '→ View Details'}
-                                                    </Button>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </Card>
+                                            </Card>
+                                        </Link>
+                                    </motion.div>
                                 ))}
                             </div>
                         </TabsContent>

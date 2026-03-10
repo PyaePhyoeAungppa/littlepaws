@@ -11,6 +11,10 @@
       "type": "Buy",
       "status": "Available",
       "image": "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&q=80&w=600",
+      "weight": "10 kg",
+      "color": "Red Sesame",
+      "vaccinated": true,
+      "energyLevel": "High",
       "description": "Mochi is a playful, energetic Shiba Inu who loves outdoor adventures and cuddles. Vaccinated, neutered, and microchipped.",
       "shopId": "1"
     },
@@ -25,6 +29,10 @@
       "type": "Buy",
       "status": "Available",
       "image": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=600",
+      "weight": "4 kg",
+      "color": "Silver Tabby",
+      "vaccinated": true,
+      "energyLevel": "Low",
       "description": "Luna is a gentle, affectionate Scottish Fold who enjoys lounging and playing with feather toys. Fully vaccinated.",
       "shopId": "2"
     },
@@ -39,6 +47,10 @@
       "type": "Adopt",
       "status": "Available",
       "image": "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&q=80&w=600",
+      "weight": "8 kg",
+      "color": "Golden",
+      "vaccinated": false,
+      "energyLevel": "Medium",
       "description": "Biscuit is a sweet rescue puppy looking for his forever home. Very sociable and great with kids.",
       "shopId": "1"
     },
@@ -53,6 +65,10 @@
       "type": "Adopt",
       "status": "Available",
       "image": "https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&q=80&w=600",
+      "weight": "5 kg",
+      "color": "Spotted Rosette",
+      "vaccinated": true,
+      "energyLevel": "Very High",
       "description": "Nala is an active, curious Bengal cat who needs an experienced owner. Spayed and vaccinated.",
       "shopId": "2"
     },
@@ -67,6 +83,10 @@
       "type": "Buy",
       "status": "Available",
       "image": "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&q=80&w=600",
+      "weight": "11 kg",
+      "color": "Tricolor",
+      "vaccinated": true,
+      "energyLevel": "High",
       "description": "Cooper is a lovable Beagle with a great nose and a bigger heart. House-trained and vaccinated.",
       "shopId": "1"
     },
@@ -81,6 +101,10 @@
       "type": "Buy",
       "status": "Available",
       "image": "https://images.unsplash.com/photo-1559239115-ce3eb7cb87ea?auto=format&fit=crop&q=80&w=600",
+      "weight": "1.5 kg",
+      "color": "White",
+      "vaccinated": false,
+      "energyLevel": "Medium",
       "description": "Snowball is a fluffy Holland Lop rabbit who is incredibly sociable and loves to be handled.",
       "shopId": "2"
     },
@@ -95,6 +119,10 @@
       "type": "Buy",
       "status": "Available",
       "image": "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?auto=format&fit=crop&q=80&w=600",
+      "weight": "120 g",
+      "color": "Orange & Yellow",
+      "vaccinated": false,
+      "energyLevel": "High",
       "description": "Mango is a vibrant, playful Sun Conure who loves interaction and can learn simple tricks.",
       "shopId": "1"
     },
@@ -109,6 +137,10 @@
       "type": "Adopt",
       "status": "Available",
       "image": "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?auto=format&fit=crop&q=80&w=600",
+      "weight": "8.5 kg",
+      "color": "Black Smoke",
+      "vaccinated": true,
+      "energyLevel": "Low",
       "description": "Shadow is a majestic Maine Coon rescue looking for a loving, patient family. Neutered and healthy.",
       "shopId": "2"
     }
@@ -268,6 +300,38 @@
       "address": "123 Pet Lane, Paws City",
       "image": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=400",
       "description": "A cozy cafe where you can enjoy artisanal coffee while your pets socialize in a safe environment."
+    },
+    {
+      "id": "7",
+      "name": "Whisker Wonders Coffee",
+      "type": "Cafe",
+      "rating": 4.6,
+      "image": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=600",
+      "description": "The purr-fect spot for cat lovers. Sip on house-blended lattes surrounded by adorable rescue cats."
+    },
+    {
+      "id": "8",
+      "name": "The Hound's Brew",
+      "type": "Cafe",
+      "rating": 4.7,
+      "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=600",
+      "description": "A rustic, hound-themed coffeehouse offering organic roasts and handmade pupuccinos for your furry friends."
+    },
+    {
+      "id": "9",
+      "name": "Feathers & Froth",
+      "type": "Cafe",
+      "rating": 4.3,
+      "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=600",
+      "description": "A vibrant cafe with a spacious indoor patio. Bird owners welcome! Enjoy exotic teas and fresh pastries."
+    },
+    {
+      "id": "10",
+      "name": "Snout & Sprout Vegan Cafe",
+      "type": "Cafe",
+      "rating": 4.9,
+      "image": "https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&q=80&w=600",
+      "description": "A 100% plant-based cafe offering healthy snacks for humans and top-tier organic treats for pets."
     },
     {
       "id": "2",

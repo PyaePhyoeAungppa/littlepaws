@@ -1,14 +1,16 @@
-import React from 'react';
-import { Home, Search, ShoppingBag, PawPrint, User } from 'lucide-react';
+import { Home, Search, ShoppingBag, PawPrint, User, LogIn } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
+import { useAuthStore } from '../../lib/store';
 
 export default function BottomNav() {
+    const { user } = useAuthStore();
     const navItems = [
-        { icon: <Home size={22} />, label: 'Home', path: '/' },
         { icon: <Search size={22} />, label: 'Discover', path: '/discover' },
         { icon: <PawPrint size={22} />, label: 'Pets', path: '/pets' },
         { icon: <ShoppingBag size={22} />, label: 'Shop', path: '/marketplace' },
-        { icon: <User size={22} />, label: 'Admin', path: '/merchant/login' },
+        user
+            ? { icon: <User size={22} />, label: 'Profile', path: '/user/profile' }
+            : { icon: <LogIn size={22} />, label: 'Log In', path: '/user/login' }
     ];
 
     return (

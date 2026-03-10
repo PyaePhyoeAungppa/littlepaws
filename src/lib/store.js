@@ -41,3 +41,35 @@ export const useCartItemCount = () =>
 
 export const useCartTotal = () =>
     useCartStore((state) => state.items.reduce((t, i) => t + i.price * i.quantity, 0));
+
+export const useWishlistStore = create(
+    persist(
+        (set, get) => ({
+            items: [],
+            toggleItem: (product) => set((state) => {
+                const isSaved = state.items.some(item => item.id === product.id);
+                if (isSaved) {
+                    return { items: state.items.filter(item => item.id !== product.id) };
+                }
+                return { items: [...state.items, product] };
+            }),
+            hasItem: (id) => get().items.some(item => item.id === id)
+        }),
+        {
+            name: 'littlepaws-wishlist',
+        }
+    )
+);
+
+export const useAuthStore = create(
+    persist(
+        (set) => ({
+            user: null, // null means not logged in
+            login: (userData) => set({ user: userData }),
+            logout: () => set({ user: null }),
+        }),
+        {
+            name: 'littlepaws-auth',
+        }
+    )
+);

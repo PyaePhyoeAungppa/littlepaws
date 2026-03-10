@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ShoppingCart, Heart, Search, SlidersHorizontal, Eye, X, Star, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fetchFromMock } from '../api/client';
@@ -12,6 +13,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 const PAGE_SIZE = 8;
 
 export default function Marketplace() {
+    const navigate = useNavigate();
     const [allProducts, setAllProducts] = useState([]);
     const [category, setCategory] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
@@ -166,7 +168,10 @@ export default function Marketplace() {
                             <motion.div key={product.id} layout
                                 initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.3, delay: Math.min(idx, 7) * 0.04 }}>
-                                <Card className="group relative h-full border-none shadow-2xl shadow-black/5 hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-300 rounded-[2rem] overflow-hidden flex flex-col bg-white">
+                                <Card
+                                    className="group relative h-full border-none shadow-2xl shadow-black/5 hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-300 rounded-[2rem] overflow-hidden flex flex-col bg-white cursor-pointer"
+                                    onClick={() => navigate(`/product/${product.id}`)}
+                                >
                                     <div className="relative aspect-[16/16] overflow-hidden bg-muted">
                                         <img src={product.image} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt={product.name} />
 
@@ -174,14 +179,17 @@ export default function Marketplace() {
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-end p-5 gap-2">
                                             <Button
                                                 variant="secondary"
-                                                onClick={() => setQuickViewProduct(product)}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setQuickViewProduct(product);
+                                                }}
                                                 className="w-full font-bold h-10 rounded-xl bg-white/95 backdrop-blur text-primary hover:bg-white gap-2"
                                             >
                                                 <Eye size={16} /> Quick View
                                             </Button>
                                         </div>
 
-                                        <Button variant="ghost" size="icon" className="absolute top-3 right-3 rounded-full bg-white/80 backdrop-blur shadow-sm text-red-400 hover:bg-red-500 hover:text-white transition-colors z-10">
+                                        <Button variant="ghost" size="icon" className="absolute top-3 right-3 rounded-full bg-white/80 backdrop-blur shadow-sm text-red-400 hover:bg-red-500 hover:text-white transition-colors z-10" onClick={(e) => e.stopPropagation()}>
                                             <Heart size={16} className="fill-current" />
                                         </Button>
                                         <Badge className="absolute top-3 left-3 bg-primary/95 text-white border-none font-bold px-3 py-1 rounded-lg shadow-sm text-xs z-10">
